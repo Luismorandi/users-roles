@@ -6,7 +6,7 @@ import { ProjectsEntity } from '../../projects/entities/projects.entity';
 
 @Entity({ name: 'users_projects' })
 export class UsersProjectsEntity extends BaseEntity {
-  @Column({ type: 'enum', enum: ACCESS_LEVEL })
+  @Column({ type: 'enum', enum: ACCESS_LEVEL, name: 'accessLevel' })
   accessLevel: ACCESS_LEVEL;
 
   @ManyToOne(() => UsersEntity, (user) => user.projectsIncludes)

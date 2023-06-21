@@ -3,13 +3,14 @@ import { IUser } from '../../interfaces/users.interface';
 import { BaseEntity } from '../../config/base.entity';
 import { ROLES } from '../../constants/roles';
 import { UsersProjectsEntity } from './usersProjects.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'users' })
 export class UsersEntity extends BaseEntity implements IUser {
-  @Column()
+  @Column({ name: 'firstName' })
   firstName: string;
 
-  @Column()
+  @Column({ name: 'lastName' })
   lastName: string;
 
   @Column()
