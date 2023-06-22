@@ -12,9 +12,11 @@ import { UserDTO, UserToProjectDTO, UserUpdateDTO } from '../dto/user.dto';
 import { UpdateResult } from 'typeorm';
 import { PublicAccess } from 'src/auth/decorators/public.decorator';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { Roles } from 'src/auth/decorators/roles.decortor';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @Controller('users')
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RolesGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -29,6 +31,7 @@ export class UsersController {
   }
 
   //@PublicAccess()
+  @Roles('BASIC')
   @Get('all')
   public async getAllUsers(): Promise<UserDTO[]> {
     return await this.usersService.findUsers();
